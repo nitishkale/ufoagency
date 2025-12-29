@@ -380,39 +380,65 @@
             100% { transform: translateX(calc(-430px * 4)); } /* Width + Gap * Unique Cards */
         }
         /* Infinite Marquee */
-        .marquee-container {
-            width: 100%;
-            overflow: hidden;
-            padding: 60px 0;
-            background: rgba(0,0,0,0.2);
-            margin-top: 80px;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
+       .marquee-container {
+    width: 100%;
+    overflow: hidden;
+    padding: 60px 0;
+    background: transparent;
+    display: flex; /* Ensures alignment */
+}
 
-        .marquee-content {
-            display: flex;
-            width: calc(250px * 10); /* Adjust based on number of logos */
-            animation: scrollMarquee 20s linear infinite;
-        }
+.marquee-content {
+    display: flex;
+    /* Adjust the time (20s) to make it faster or slower */
+    animation: scrollMarquee 20s linear infinite;
+    will-change: transform;
+}
 
-        .marquee-item {
-            width: 250px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Outfit';
-            font-weight: 900;
-            font-size: 1.5rem;
-            color: var(--slate);
-            letter-spacing: 5px;
-            text-transform: uppercase;
-        }
+.marquee-item {
+    /* Use 'max-content' so the div is exactly as wide as the text */
+    flex: 0 0 max-content; 
+    padding-right: 100px; /* Space between the repeating phrases */
+    font-family: 'Outfit';
+    font-weight: 900;
+    text-transform: uppercase;
+}
 
-        @keyframes scrollMarquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-250px * 5)); }
-        }
+@keyframes scrollMarquee {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        /* This moves the content by exactly one phrase length */
+        transform: translateX(-100%);
+    }
+}
+/* Custom Scrollbar for Chrome/Safari/Edge */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--slate);
+    border-radius: 10px;
+    border: 2px solid var(--bg-dark);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--yellow);
+}
+@media (max-width: 600px) {
+    .social-dock {
+        display: none; /* Hides the side text on small phones to save space */
+    }
+    .ufo-letter {
+        font-size: 60px; /* Makes the logo smaller on mobile */
+    }
+}
     </style>
 </head>
 <body>
@@ -465,7 +491,7 @@
             <div class="about-text">
                 <h2>Abduction of the Ordinary</h2>
                 <p>U.F.O (User Friendly Only) is a boutique UI/UX agency specialized in <span class="highlight">removing the friction</span> between humans and technology.</p>
-                <p>We don't just build layouts; we build "Close Encounters" of the digital kind. Our philosophy is that if a user has to think for more than a millisecond, we haven't done our job.</p>
+                <p>We don't just build layouts; we build "Close Encounters" of the digital kind. Our philosophy is that if a user has to think, we haven't done our job.</p>
                 <p>Based in the digital ether, we serve clients who are ready to launch products that are <span class="highlight">truly out of this world</span>.</p>
             </div>
             <div class="scanner-visual">
@@ -513,11 +539,11 @@
                     <h3>UX Reconnaissance</h3>
                     <p>Deep-dive research and user testing to identify navigation friction.</p>
                 </div>
-                <div class="service-card">
+               <!-- <div class="service-card">
                     <div class="planet-icon p-3"></div>
                     <h3>Future-Proofing</h3>
                     <p>Scalable design systems that evolve with emerging tech stacks.</p>
-                </div>
+                </div>-->
             </div>
         </div>
     </section>
@@ -527,7 +553,7 @@
         <h2>Field Reports</h2>
         
         <div class="field-reports-wrapper">
-            <div class="reports-track">
+          <!--  <div class="reports-track">
                 <div class="project-card">
                     <div class="project-category">Neural Interface</div>
                     <h3 class="project-title">Project Nebula</h3>
@@ -574,22 +600,21 @@
                     <a href="#" class="view-project">VIEW INTEL <span>→</span></a>
                 </div>
             </div>
-        </div>
+        </div>-->
+       <div style="width: 100%;">
+        <p style="text-align: center; color: var(--yellow); letter-spacing: 5px; margin-bottom: 20px; font-size: 0.8rem;">MISSION LOG: 01</p>
+        
         <div class="marquee-container">
-    <div style="text-align: center; font-size: 0.7rem; color: var(--yellow); letter-spacing: 3px; margin-bottom: 20px;">ALLIED AGENCIES & PARTNERS</div>
-    <div class="marquee-content">
-        <div class="marquee-item">SpaceX</div>
-        <div class="marquee-item">Tesla</div>
-        <div class="marquee-item">NASA</div>
-        <div class="marquee-item">Neuralink</div>
-        <div class="marquee-item">Adobe</div>
-        <div class="marquee-item">SpaceX</div>
-        <div class="marquee-item">Tesla</div>
-        <div class="marquee-item">NASA</div>
-        <div class="marquee-item">Neuralink</div>
-        <div class="marquee-item">Adobe</div>
+            <div class="marquee-content">
+                <div class="marquee-item" style="font-size: clamp(2rem, 10vw, 6rem); color: white;">
+                    OUR WEBSITE IS <span style="color: var(--yellow);">OUR PORTFOLIO</span>
+                </div>
+                <div class="marquee-item" style="font-size: clamp(2rem, 10vw, 6rem); color: white;">
+                    OUR WEBSITE IS <span style="color: var(--yellow);">OUR PORTFOLIO</span>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
 
         <div class="scroll-indicator" style="position: relative; margin: 40px auto 0;" onclick="document.getElementById('contact').scrollIntoView()">
             <div class="scroll-arrow"></div>
@@ -598,17 +623,40 @@
         </div>
     </div>
 </section>
-    <section class="content-block" id="contact">
+ <!--<section class="content-block" id="contact">
+    <div class="launchpad-card">
+        <h2>Initiate Contact</h2>
+        <form id="ufo-inquiry-form" action="https://formspree.io/f/meeqpaqo" method="POST">
+            <input type="text" name="name" class="launch-input" placeholder="Pilot Name" required>
+            <input type="email" name="email" class="launch-input" placeholder="Transmission Email" required>
+            <textarea name="message" class="launch-input" rows="4" placeholder="Mission Objectives..." required></textarea>
+            
+            <button type="submit" class="launch-btn" id="submit-btn">Launch Transmission</button>
+            
+            <p id="form-status" style="margin-top: 20px; display: none; color: #00ff88; font-weight: bold;"></p>
+        </form>
+    </div>
+</section>-->
+ <section class="content-block" id="contact">
         <div class="launchpad-card">
+<form action="https://formspree.io/f/meeqpaqo" method="POST" id="ufo-form">
+
             <h2>Initiate Contact</h2>
             <p style="color: var(--muted); margin-bottom: 20px;">Ready to launch your project into the stratosphere?</p>
             <div class="launch-form">
-                <input type="text" class="launch-input" placeholder="Pilot Name">
-                <input type="email" class="launch-input" placeholder="Transmission Email">
-                <textarea class="launch-input" rows="4" placeholder="Mission Objectives..."></textarea>
-                <button class="launch-btn">Launch Transmission</button>
+                <input type="text" name="name" class="launch-input" placeholder="Pilot Name" required>
+                <input type="email" name="email" class="launch-input" placeholder="Transmission Email" required>
+                <textarea class="launch-input" name="message"  rows="4" placeholder="Mission Objectives..." required></textarea>
+                <button type="submit" class="launch-btn" id="submit-btn">Launch Transmission</button>
+<p id="form-status" style="margin-top: 20px; display: none; color: #00ff88; font-weight: bold;"></p>
+
             </div>
+</form>
+<div id="status-msg" style="display:none; margin-top:20px; padding:20px; border:1px solid #00ff88; border-radius:12px; color:#00ff88; background: rgba(0,255,136,0.1);">
+            Your transmission signals have been received, we will respond to you at the earliest. Thankyou!
         </div>
+        </div>
+
     </section>
 
     <footer>
@@ -634,10 +682,61 @@
     </div>
 <div id="loginModal" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.92); backdrop-filter:blur(15px); display:none; align-items:center; justify-content:center; z-index:5000;">
     <div class="modal-box" style="background:#1a1a1a; border:1px solid var(--slate); padding:40px; border-radius:30px; text-align:center; width:400px;">
+        <div id="credView" >
+            <h3 style="font-family:'Outfit'; color:var(--yellow); margin-bottom:20px;">SYSTEM LOGIN</h3>
+            <input type="text" class="launch-input" placeholder="Pilot Username" style="width:100%; margin-bottom:10px;">
+            <input type="password" class="launch-input" placeholder="Access Key" style="width:100%; margin-bottom:10px;">
+            <button class="launch-btn" style="width:100%; margin-bottom:15px;">Enter Cockpit</button>
+            
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:15px; color:var(--muted);"><hr style="flex:1; opacity:0.2;"> or <hr style="flex:1; opacity:0.2;"></div>
+            
+            <button onclick="alert('Google Auth')" style="width: 100%; 
+    padding: 12px; 
+    background: rgba(255, 255, 255, 0.05); 
+    border: 1px solid rgba(255, 255, 255, 0.2); 
+    color: white; 
+    border-radius: 12px; 
+    cursor: pointer; 
+    font-weight: bold; 
+    /* Alignment Properties */
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    gap: 12px; 
+    transition: 0.3s;">
+<svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.874 2.684-6.615z" fill="#4285F4"/>
+        <path d="M9 18c2.43 0 4.467-.806 5.956-2.184L12.048 13.56c-.818.549-1.865.874-3.048.874-2.344 0-4.327-1.584-5.035-3.71H1.057v2.339C2.54 15.992 5.56 18 9 18z" fill="#34A853"/>
+        <path d="M3.965 10.724c-.18-.549-.282-1.132-.282-1.724s.102-1.175.282-1.724V4.937H1.057C.443 6.158 0 7.54 0 9s.443 2.842 1.057 4.063l2.908-2.339z" fill="#FBBC05"/>
+        <path d="M9 3.566c1.321 0 2.508.454 3.44 1.345l2.582-2.582C13.463.86 11.426 0 9 0 5.56 0 2.54 2.008 1.057 4.937L3.965 7.276c.708-2.126 2.691-3.71 5.035-3.71z" fill="#EA4335"/>
+    </svg>Sign in with Google</button>
+            <p style="margin-top:20px; font-size:0.8rem;">Don't have an uplink? 
+            <span onclick="switchAuth('signup')" style="color:var(--yellow); cursor:pointer; text-decoration: underline;">Sign Up</span>
+        </p>
+<button onclick="toggleLoginModal()" style="background:none; border:none; color:white; cursor:pointer; opacity:0.6;">Cancel</button>
+
+            </div>
+            <div id="signupView" style="display: none;">
+        <h3 style="font-family:'Outfit'; color:var(--yellow); margin-bottom:20px;">CREATE UPLINK</h3>
+        <p style="color: var(--muted); font-size: 0.8rem; margin-bottom: 20px;">Join the UFO network for exclusive mission intel.</p>
         
-        <div id="bioView">
+        <input type="text" class="launch-input" placeholder="Full Name" style="width:100%; margin-bottom:10px;">
+        <input type="email" class="launch-input" placeholder="Transmission Email" style="width:100%; margin-bottom:10px;">
+<input type="tel" class="launch-input" placeholder="Pilot Phone (e.g. +1...)" style="width:100%; margin-bottom:10px;">
+        <input type="password" class="launch-input" placeholder="Create Access Key" style="width:100%; margin-bottom:10px;">
+        
+        <button class="launch-btn" style="width:100%; margin-bottom:15px;">Initialize Profile</button>
+        
+        <p style="margin-top:20px; font-size:0.8rem;">Already have an account? 
+            <span onclick="switchAuth('cred')" style="color:var(--yellow); cursor:pointer; text-decoration: underline;">Login</span>
+        </p>
+        <button onclick="toggleLoginModal()" style="background:none; border:none; color:white; cursor:pointer; opacity:0.6; margin-top: 10px;">Cancel</button>
+    </div>
+           <!--     <button onclick="switchAuth('bio')" style="margin-top:20px; background:none; border:none; color:var(--muted); cursor:pointer;">← Back to Scanner</button>
+        </div>
+     <div id="bioView">
             <h3 style="font-family:'Outfit'; color:var(--yellow); letter-spacing:2px; margin-bottom:20px;">IDENTITY VERIFICATION</h3>
-            <div id="bioTrigger" style="width:100px; height:100px; border:2px solid var(--yellow); border-radius:50%; margin:0 auto 20px; display:flex; align-items:center; justify-content:center; cursor:pointer; position:relative; overflow:hidden;">
+           <div id="bioTrigger" style="width:100px; height:100px; border:2px solid var(--yellow); border-radius:50%; margin:0 auto 20px; display:flex; align-items:center; justify-content:center; cursor:pointer; position:relative; overflow:hidden;">
                 <div id="scanLine" style="position:absolute; width:80%; height:2px; background:var(--yellow); box-shadow:0 0 10px var(--yellow); top:0; display:none; animation:scanMove 2s infinite ease-in-out;"></div>
                 <span style="font-size:3rem;">👤</span>
             </div>
@@ -646,21 +745,9 @@
                 <button onclick="switchAuth('cred')" style="background:none; border:none; color:var(--yellow); cursor:pointer; text-decoration:underline; font-size:0.9rem;">Use Credentials</button>
                 <button onclick="toggleLoginModal()" style="background:none; border:none; color:white; cursor:pointer; opacity:0.6;">Cancel</button>
             </div>
-        </div>
+        </div>-->
 
-        <div id="credView" style="display:none;">
-            <h3 style="font-family:'Outfit'; color:var(--yellow); margin-bottom:20px;">SYSTEM LOGIN</h3>
-            <input type="text" class="launch-input" placeholder="Pilot Username" style="width:100%; margin-bottom:10px;">
-            <input type="password" class="launch-input" placeholder="Access Key" style="width:100%; margin-bottom:10px;">
-            <button class="launch-btn" style="width:100%; margin-bottom:15px;">Enter Cockpit</button>
-            
-            <div style="display:flex; align-items:center; gap:10px; margin-bottom:15px; color:var(--muted);"><hr style="flex:1; opacity:0.2;"> or <hr style="flex:1; opacity:0.2;"></div>
-            
-            <button onclick="alert('Google Auth')" style="width:100%; padding:12px; background:transparent; border:1px solid white; color:white; border-radius:12px; cursor:pointer; font-weight:bold;">Sign in with Google</button>
-            
-            <p style="margin-top:20px; font-size:0.8rem;">Don't have an uplink? <span style="color:var(--yellow); cursor:pointer;">Sign Up</span></p>
-            <button onclick="switchAuth('bio')" style="margin-top:20px; background:none; border:none; color:var(--muted); cursor:pointer;">← Back to Scanner</button>
-        </div>
+        
     </div>
 </div>
     <script>
@@ -678,24 +765,30 @@
             chat.style.display = (chat.style.display === 'flex') ? 'none' : 'flex';
         }
 
-        function sendMessage() {
-            const input = document.getElementById('chatInput');
-            const body = document.getElementById('chatBody');
-            if (input.value.trim() === "") return;
-            const userDiv = document.createElement('div');
-            userDiv.className = 'message user';
-            userDiv.textContent = input.value;
-            body.appendChild(userDiv);
-            input.value = "";
-            body.scrollTop = body.scrollHeight;
-            setTimeout(() => {
-                const botDiv = document.createElement('div');
-                botDiv.className = 'message bot';
-                botDiv.textContent = "Signal received. Transmission successful.";
-                body.appendChild(botDiv);
-                body.scrollTop = body.scrollHeight;
-            }, 800);
-        }
+       function sendMessage() {
+    const input = document.getElementById('chatInput');
+    const body = document.getElementById('chatBody');
+    if (input.value.trim() === "") return;
+
+    // Add User Message
+    const userDiv = document.createElement('div');
+    userDiv.className = 'message user';
+    userDiv.textContent = input.value;
+    body.appendChild(userDiv);
+    input.value = "";
+    body.scrollTop = body.scrollHeight;
+
+    // Show "Typing..." Indicator
+    const typingDiv = document.createElement('div');
+    typingDiv.className = 'message bot';
+    typingDiv.textContent = "...";
+    body.appendChild(typingDiv);
+
+    setTimeout(() => {
+        typingDiv.textContent = "Signal received. Analyzing mission parameters...";
+        body.scrollTop = body.scrollHeight;
+    }, 1500);
+}
 
         document.getElementById('chatInput').addEventListener("keypress", (e) => {
             if (e.key === "Enter") sendMessage();
@@ -714,7 +807,7 @@ function toggleLoginModal() {
     if (!loginModal) return;
     const isHidden = loginModal.style.display === 'none' || loginModal.style.display === '';
     loginModal.style.display = isHidden ? 'flex' : 'none';
-    if (isHidden) switchAuth('bio'); 
+    //if (isHidden) switchAuth('bio'); 
 }
 
 // Bind the click event directly to your power button
@@ -723,15 +816,30 @@ if (loginBtn) {
 }
 
 function switchAuth(type) {
-    if (type === 'cred') {
-        bioView.style.display = 'none';
-        credView.style.display = 'block';
-    } else {
-        bioView.style.display = 'block';
+    const credView = document.getElementById('credView');
+    const signupView = document.getElementById('signupView');
+    // const bioView = document.getElementById('bioView'); // If you re-enable biometrics
+
+    if (type === 'signup') {
         credView.style.display = 'none';
+        signupView.style.display = 'block';
+    } else if (type === 'cred') {
+        credView.style.display = 'block';
+        signupView.style.display = 'none';
     }
 }
 
+// Update your existing toggleLoginModal to reset to the login view every time it opens
+function toggleLoginModal() {
+    if (!loginModal) return;
+    const isHidden = loginModal.style.display === 'none' || loginModal.style.display === '';
+    loginModal.style.display = isHidden ? 'flex' : 'none';
+    
+    // Always default back to Login view when opening/closing
+    if (isHidden) {
+        switchAuth('cred');
+    }
+}
 // 3. SCAN LOGIC
 let audioCtx;
 let scanHum;
@@ -792,6 +900,53 @@ if (bioTrigger) {
     bioTrigger.addEventListener('touchstart', (e) => { e.preventDefault(); startScan(); });
     bioTrigger.addEventListener('touchend', stopScan);
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+    const form = document.getElementById("ufo-form");
+    const status = document.getElementById("status-msg");
+    const btn = document.getElementById("submit-btn");
+
+    form.addEventListener("submit", async function(event) {
+        event.preventDefault(); // CRITICAL: Stops the redirect
+        
+        const data = new FormData(event.target);
+        btn.textContent = "TRANSMITTING...";
+        btn.disabled = true;
+
+        fetch(event.target.action, {
+            method: form.method,
+            body: data,
+            headers: {
+                'Accept': 'application/json'
+            }
+        }).then(response => {
+            if (response.ok) {
+                // SUCCESS: Show message and clear form
+                status.style.display = "block";
+                form.reset(); 
+                btn.textContent = "TRANSMISSION SUCCESS";
+                form.style.display = "none"; // Optionally hide form to show popup clearly
+
+// 2. NEW: 5-Second Reset Logic
+    setTimeout(() => {
+        status.style.display = "none";      // Hide the success message
+        form.style.display = "block";       // Show the form again
+        btn.textContent = "Launch Transmission"; // Reset button text
+        btn.disabled = false;               // Re-enable the button
+    }, 2000); // 5000 milliseconds = 2 seconds
+            } else {
+                status.innerHTML = "Transmission error. Please try again.";
+                status.style.color = "#ff4444";
+                status.style.display = "block";
+                btn.disabled = false;
+            }
+        }).catch(error => {
+            status.innerHTML = "Signal lost. Check your connection.";
+            status.style.display = "block";
+            btn.disabled = false;
+        });
+    });
+});
     </script>
 </body>
 </html>
